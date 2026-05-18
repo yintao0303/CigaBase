@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Logo 选择</title>
+<style>
+  body { background:#0a0a0a; color:#fff; font-family:system-ui; display:flex; flex-direction:column; align-items:center; padding:40px; gap:20px; }
+  h1 { color:#f59e0b; }
+  .grid { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+  .card { background:#1a1a1a; border-radius:16px; padding:20px; text-align:center; border:2px solid #333; cursor:pointer; transition:all .2s; }
+  .card:hover { border-color:#f59e0b; transform:scale(1.05); }
+  .card.selected { border-color:#f59e0b; box-shadow:0 0 20px rgba(245,158,11,.4); }
+  .card img { width:180px; height:180px; border-radius:12px; }
+  .card p { margin:8px 0 0; color:#999; font-size:13px; }
+  button { background:#f59e0b; color:#000; border:none; padding:12px 30px; border-radius:10px; font-size:16px; font-weight:bold; cursor:pointer; margin-top:20px; }
+  button:hover { background:#d97706; }
+</style></head><body>
+<h1>选一个 Logo</h1>
+<div class="grid" id="grid">
+  <div class="card" onclick="pick('logo_a.png',this)"><img src="/logo_a.png"><p>风格 A — 简约香烟图标</p></div>
+  <div class="card" onclick="pick('logo_b.png',this)"><img src="/logo_b.png"><p>风格 B — 燃烧香烟+烟雾</p></div>
+  <div class="card" onclick="pick('logo_c.png',this)"><img src="/logo_c.png"><p>风格 C — 极简螺旋烟雾</p></div>
+  <div class="card" onclick="pick('logo_v2.png',this)"><img src="/logo_v2.png"><p>风格 D — 金色徽章</p></div>
+</div>
+<button onclick="apply()">✅ 应用选中的 Logo</button>
+<script>
+let chosen = '';
+function pick(name,el){
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  chosen=name;
+}
+async function apply(){
+  if(!chosen) return alert('先点击选一个');
+  await fetch('/api/logo?set='+chosen);
+  document.body.innerHTML='<h1 style=color:#4ade80>✅ 已应用 '+chosen+'</h1><p>刷新首页查看效果</p>';
+}
+</script>
+</body></html>
