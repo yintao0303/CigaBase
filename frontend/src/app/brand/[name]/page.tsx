@@ -4,6 +4,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { getProductsByBrand, getBrandByName, getBrandCoverUrl } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
+
+export const runtime = 'edge';
 import { Separator } from "@/components/ui/separator";
 import {
   Star, Flame, ArrowLeft, ArrowUpRight, Cigarette, Package,
