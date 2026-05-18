@@ -8,5 +8,3 @@ scraper/data/*.db*
 __pycache__/
 .DS_Store
 scraper/data/*.json
-frontend/src/data/products.json
-frontend/src/data/brands.json
