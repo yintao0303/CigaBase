@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env
+.env.local
+scraper/data/cache/
+scraper/data/*.db*
+*.pyc
+__pycache__/
+.DS_Store
